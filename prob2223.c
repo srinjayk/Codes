@@ -6,6 +6,7 @@ int main()
 	int a=9;
 	int i,j,k,l,m,p,q;
 	int r=1;
+	int y=0;
 	int arr[10][10];
     for (i = 1; i < 10; ++i)
     {
@@ -68,7 +69,27 @@ int main()
     	//}
     //}
 
+
+    for (i = 1; i < 10; ++i)
+    {
+    	/* code */
+    	for (j = 1; j < 10; ++j)
+    	{
+    		/* code */
+    		if (arr[i][j]!=0)
+    		{
+    			/* code */
+    			y++;
+    		}
+    		//scanf("%d ",&arr[i][j]);
+    	}
+    	scanf("\n");
+    }
+
+
     FILE *in_file  = fopen("minisat.txt", "w");
+    
+    fprintf(in_file, "p cnf 729 %d\n", (y+3177));
 
     for (i = 1; i < 10; ++i)
     {
@@ -81,7 +102,7 @@ int main()
             {
                 /* code */
                 int c=arr[i][j];
-                fprintf(file,"%d 0\n",(i*81+j*9+c));
+                fprintf(in_file,"%d 0\n",(i*81+j*9+c));
                 r++;
 
             }
@@ -100,12 +121,12 @@ int main()
     			
     				/* code */
 
-    				fprintf(file,"%d ",(j*81+m*9+k) );
+    				fprintf(in_file,"%d ",(j*81+m*9+k) );
     				
 
     		
     		}
-    		fprintf(file,"0\n");
+    		fprintf(in_file,"0\n");
             r++;
     	}
     }
@@ -120,11 +141,11 @@ int main()
     		{
     			
     				/* code */
-    				fprintf(file,"%d ",(m*81+j*9+k) );
+    				fprintf(in_file,"%d ",(m*81+j*9+k) );
     				
 
     		}
-    		fprintf(file,"0 \n");
+    		fprintf(in_file,"0 \n");
             r++;
     	}
     }
@@ -138,19 +159,19 @@ int main()
     		for (i = 1; i < 10; i=i+3)
     		{
     			/* code */
-    			for(m=1;m<4;m++)
+    			for(m=0;m<3;m++)
     			{
-    				for (l = 1; l < 4; ++l)
+    				for (l = 0; l < 3; ++l)
     				{
     					/* code */
     					
     							/* code */
-    							fprintf(file,"%d ",((i+l)*81+(j+m)*9+k));
+    							fprintf(in_file,"%d ",((i+l)*81+(j+m)*9+k));
     							
     						
     				}
     			}
-    			fprintf(file,"0 \n");
+    			fprintf(in_file,"0 \n");
                 r++;
 
     		}
@@ -163,9 +184,9 @@ int main()
     	/* code */
     	for(m = 1 ; m<10 ;m++)
     	{
-    		fprintf(file,"%d ",(m*81+m*9+k));
+    		fprintf(in_file,"%d ",(m*81+m*9+k));
     	}
-    	fprintf(file,"0 \n");
+    	fprintf(in_file,"0 \n");
         r++;
     }
 
@@ -174,9 +195,9 @@ int main()
     	/* code */
     	for(m = 1 ; m<10 ;m++)
     	{
-    		fprintf(file,"%d ",(m*81+(8-m)*9+k));
+    		fprintf(in_file,"%d ",(m*81+(8-m)*9+k));
     	}
-    	fprintf(file,"0 \n");
+    	fprintf(in_file,"0 \n");
         r++;
     }
 
@@ -188,7 +209,7 @@ int main()
     		{
     			for(m=l+1;m<10;m++)
     			{
-    				fprintf(file,"%d %d 0\n",-(i*81+j*9+l),-(i*81+j*9+m));
+    				fprintf(in_file,"%d %d 0\n",-(i*81+j*9+l),-(i*81+j*9+m));
                     r++;
     			}
     		}
